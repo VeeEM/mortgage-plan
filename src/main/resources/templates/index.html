@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>mortgage-plan</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <form method="post" th:action="@{/add}" th:object="${prospectObject}">
+      <label for="name">Name</label>
+      <input id="name" placeholder="Name" required th:field="*{name}" type="text" />
+      <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+      <br />
+      <label for="loanTotal">Loan Total</label>
+      <input id="loanTotal" placeholder="Loan Total" value required th:field="*{loanTotal}" />
+      <span th:if="${#fields.hasErrors('loanTotal')}" th:errors="*{loanTotal}"></span>
+      <br />
+      <label for="interest">Interest</label>
+      <input id="interest" placeholder="Interest" required th:field="*{interest}" type="text" />
+      <span th:if="${#fields.hasErrors('interest')}" th:errors="*{interest}"></span>
+      <br />
+      <label for="years">Years</label>
+      <input id="years" placeholder="Years" required th:field="*{years}" type="text" />
+      <span th:if="${#fields.hasErrors('years')}" th:errors="*{years}"></span>
+      <br />
+      <input type="submit" value="Add prospect" />
+    </form>
+    <table>
+      <tr>
+	<th>Name</th>
+	<th>Loan Total</th>
+	<th>Interest</th>
+	<th>Years</th>
+	<th>Montly Payment</th>
+      </tr>
+      <tr th:if="${#lists.isEmpty(prospects)}">
+	<td colspan="5">No prospects found.</td>
+      </tr>
+      <tr th:each="prospect : ${prospects}">
+	<td th:text="${prospect.name}"></td>
+	<td th:text="${#strings.append(#numbers.formatDecimal(prospect.loanTotal,1,2), ' €')}"></td>
+	<td th:text="${#strings.append(prospect.interest * 100, '%')}"></td>
+	<td th:text="${prospect.years}"></td>
+	<td th:text="${#strings.append(#numbers.formatDecimal(prospect.monthlyPayment,1,2), ' €')}"> €</td>
+    </table>
+</body>
+</html>
