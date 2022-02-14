@@ -13,6 +13,7 @@ MySQL database for it in another container.
 ## Running without docker-compose
 Tests can be run with:
 > gradlew test
+
 And the application itself with:
 > gradlew bootRun
 
