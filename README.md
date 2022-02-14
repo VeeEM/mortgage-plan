@@ -1,6 +1,7 @@
 ## Running with docker-compose
 First download wait-for-it, by executing:
 > git submodule init
+
 > git submodule update
 
 Now the project can be built and run by executing:
