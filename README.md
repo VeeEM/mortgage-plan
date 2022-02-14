@@ -1,5 +1,9 @@
 ## Running with docker-compose
-The project can be built and run by executing:
+First download wait-for-it, by executing:
+> git submodule init
+> git submodule update
+
+Now the project can be built and run by executing:
 > docker-compose -f docker-compose.dev.yml up --build
 
 This runs the mortgage-plan Java application in one container and a 
